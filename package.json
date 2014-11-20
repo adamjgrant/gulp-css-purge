@@ -1,0 +1,14 @@
+{
+  "name": "gulp-css-purge",
+  "version": "1.0.0",
+  "description": "Gulp wrapper for css-purge on npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Kochanowicz",
+  "license": "MIT",
+  "devDependencies": {
+    "css-purge": "^1.1.1"
+  }
+}
