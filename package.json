@@ -1,14 +1,23 @@
 {
   "name": "gulp-css-purge",
   "version": "1.0.0",
-  "description": "Gulp wrapper for css-purge on npm",
+  "description": "",
   "main": "index.js",
+  "dependencies": {
+    "css-purge": "^1.1.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Adam Kochanowicz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ajkochanowicz/gulp-css-purge.git"
+  },
+  "author": "",
   "license": "MIT",
-  "devDependencies": {
-    "css-purge": "^1.1.1"
-  }
+  "bugs": {
+    "url": "https://github.com/ajkochanowicz/gulp-css-purge/issues"
+  },
+  "homepage": "https://github.com/ajkochanowicz/gulp-css-purge"
 }
