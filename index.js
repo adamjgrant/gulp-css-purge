@@ -1,7 +1,7 @@
 var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
-var purge = require('css-purge');
+var purge = require('css-purge/lib/css_purge');
 
 const PLUGIN_NAME = 'gulp-css-purge';
 
