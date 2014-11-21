@@ -13,18 +13,18 @@ function purgeStream(contents) {
 
 function gulpCSSPurge() {
   var stream = through.obj(function(file, enc, cb) {
-    if (file.isNull()) {
-      // File is null, do nothing.
-    }
+    if (file.isNull()) return cb(null, file);
+    if (file.isStream()) return cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
 
-    var contents = new Buffer(purge(null, null, null, file.contents))
+    var purgedCSS = ""
+    try {
+      purgedCSS = purge(null, null, null, file.contents);
+    } catch (err) {
+      return cb(new PluginError(PLUGIN_NAME, err));
+    }
 
     if (file.isBuffer()) {
-      file.contents = Buffer.concat([contents, file.contents]);
-    }
-
-    if (file.isStream()) {
-      file.contents = file.contents.pipe(purgeStream(contents));
+      file.contents = new Buffer(purgedCSS);
     }
 
     this.push(file);
