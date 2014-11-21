@@ -19,15 +19,18 @@ function gulpCSSPurge() {
     var purgedCSS = ""
     try {
       console.log('---');
-      console.log(file.contents);
-      console.log(purge(null, null, null, file.contents));
-      purgedCSS = new Buffer(purge(null, null, null, file.contents));
+
+      // Need to feed in file.contents as a string, or whatever css-purge expects.
+      console.log(purge(null, null, null, file.contents.toString));
+
+      // This should then work the rest of the way through.
+      purgedCSS = new Buffer(purge(null, null, null, file.contents.toString));
     } catch (err) {
       return cb(new PluginError(PLUGIN_NAME, err));
     }
 
     if (file.isBuffer()) {
-      file.contents = Buffer.concat([purgedCSS, file.contents]);
+      file.contents = purgedCSS;
     }
 
     this.push(file);
