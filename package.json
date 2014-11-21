@@ -1,6 +1,6 @@
 {
   "name": "gulp-css-purge",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "main": "index.js",
   "dependencies": {
