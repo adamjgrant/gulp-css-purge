@@ -31,7 +31,7 @@ function CSSPurge(filenameInput, filenameOutput, options, cssContent) {
 	is_no_duplicate_property = options.no_duplicate_property;
 
 	try {
-		var css = (cssContent || iead(filenameIn, 'utf8'));
+		var css = (cssContent || read(filenameIn, 'utf8'));
 
 		var parsedCSS = parse(css),
 			parsedRules = parsedCSS.stylesheet.rules,
@@ -203,7 +203,7 @@ function CSSPurge(filenameInput, filenameOutput, options, cssContent) {
 
     var writeRequired = (cssContent ? false : true)
 
-		output_css(parsedRules, writeRequired);
+		return output_css(parsedRules, writeRequired);
 
 
 	} catch (e) {
