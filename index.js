@@ -12,11 +12,11 @@ function gulpCSSPurge() {
     }
 
     if (file.isBuffer()) {
-      file.contents = purge(file.contents);
+      file.contents = purge(null, null, null, file.contents);
     }
   
     if (file.isStream()) {
-      file.contents = purge(file.contents);
+      file.contents = purge(null, null, null, file.contents);
     }
 
     this.push(file);
