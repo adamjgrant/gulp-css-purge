@@ -19,6 +19,7 @@ function gulpCSSPurge() {
     var purgedCSS = ""
     try {
       console.log('---');
+      console.log(file.contents);
       console.log(purge(null, null, null, file.contents));
       purgedCSS = new Buffer(purge(null, null, null, file.contents));
     } catch (err) {
