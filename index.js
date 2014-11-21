@@ -24,7 +24,7 @@ function gulpCSSPurge() {
     }
 
     if (file.isBuffer()) {
-      file.contents = new Buffer(purgedCSS);
+      file.contents = Buffer.concat([purgedCSS, file.contents]);
     }
 
     this.push(file);
