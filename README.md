@@ -9,7 +9,7 @@ Purges duplicate CSS rules. Based on [css-purge](https://www.npmjs.org/package/c
         minify = require('gulp-minify-css');
 
     gulp.task('default', function() {
-      gulp.src([./**/*.sass])
+      gulp.src(['./**/*.sass'])
         .pipe(sass())
         .pipe(purge())
         .pipe(minify())
