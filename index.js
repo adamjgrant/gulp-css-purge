@@ -11,14 +11,14 @@ function purgeStream(contents) {
   return stream;
 }
 
-function gulpCSSPurge() {
+function gulpCSSPurge( options ) {
   var stream = through.obj(function(file, enc, cb) {
     if (file.isNull()) return cb(null, file);
     if (file.isStream()) return cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
 
     var purgedCSS = ""
     try {
-      purgedCSS = new Buffer(purge(null, null, null, file.contents.toString()));
+      purgedCSS = new Buffer(purge(null, null, options, file.contents.toString()));
     } catch (err) {
       return cb(new PluginError(PLUGIN_NAME, err));
     }
