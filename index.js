@@ -18,7 +18,9 @@ function gulpCSSPurge() {
 
     var purgedCSS = ""
     try {
-      purgedCSS = new Buffer(purge(null, null, null, file.contents.toString()));
+      var content = file.contents.toString();
+      if(!content) return cb();
+      purgedCSS = new Buffer(purge(null, null, null, content));
     } catch (err) {
       return cb(new PluginError(PLUGIN_NAME, err));
     }
