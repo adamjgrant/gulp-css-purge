@@ -1,18 +1,28 @@
 {
   "name": "gulp-css-purge",
-  "version": "1.0.23",
-  "description": "",
+  "version": "3.0.0",
+  "description": "gulp plugin to purge, burn, reduce, shorten, compress, clean, trim and format duplicate, extra, excess or bloated CSS with CSS-PURGE.",
+  "keywords": [
+    "gulpplugin",
+    "CSS-PURGE gulp plugin",
+    "css",
+    "purge",
+    "clean",
+    "minify",
+    "uglify",
+    "purge-css",
+    "minify-css",
+    "gulp-minify-css",
+    "gulp-purge-css",
+    "gulpfriendly"
+  ],
   "main": "index.js",
   "dependencies": {
-    "css-purge-alt": "^1.1.1",
-    "gulp-util": "^3.0.1",
-    "through2": "^0.6.3"
+    "css-purge": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "through2": "^2.0.3"
   },
-  "devDependencies": {
-    "css-purge-alt": "^1.1.2",
-    "gulp-util": "^3.0.1",
-    "through2": "^0.6.3"
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,7 +30,7 @@
     "type": "git",
     "url": "https://github.com/ajkochanowicz/gulp-css-purge.git"
   },
-  "author": "",
+  "author": "Adam Grant, Andrew Quan",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ajkochanowicz/gulp-css-purge/issues"

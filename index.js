@@ -1,39 +1,72 @@
+'use strict';
+
 var through = require('through2');
+var cssPurge = require('css-purge');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
-var purge = require('css-purge-alt/lib/css-purge');
 
 const PLUGIN_NAME = 'gulp-css-purge';
 
-function purgeStream(contents) {
-  var stream = through();
-  stream.write(contents);
-  return stream;
-}
+var gulpCSSPurge = function(options) {
+  // console.log('options: ', options);
 
-function gulpCSSPurge() {
-  var stream = through.obj(function(file, enc, cb) {
-    if (file.isNull()) return cb(null, file);
-    if (file.isStream()) return cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
+  function purgedStream(modifiedCSS) {
 
-    var purgedCSS = ""
-    try {
-      purgedCSS = new Buffer(purge(null, null, null, file.contents.toString()));
-    } catch (err) {
-      return cb(new PluginError(PLUGIN_NAME, err));
+    return through().write(modifiedCSS);
+  }
+
+  return through.obj(function(file, encoding, callback){
+
+    if (file.isNull()) {
+      return callback(null, file);
     }
 
-    if (file.isBuffer()) {
-      file.contents = purgedCSS;
+    if (file.isStream()) {
+
+      cssPurge.purgeCSS(fileContents, options, function(error, results){
+
+        if (error) {
+          return cb(new gutil.PluginError(PLUGIN_NAME, error));
+        }
+
+        file.contents = file.contents.pipe(purgedStream(results));
+        callback(null, file);
+      });
+
+
+    } else if (file.isBuffer()) {
+
+
+      var fileContents = file.contents.toString();
+      if (!fileContents.length) {
+        // Don't crash on empty files
+        return callback(null, file);
+      }
+
+      //default options
+      if (options === null || options === undefined) {
+        options = {
+          trim : true,
+          shorten : true
+        };
+      }
+
+      try {
+        cssPurge.purgeCSS(fileContents, options, function(error, results){
+
+          if (error) {
+            return cb(new gutil.PluginError(PLUGIN_NAME, error));
+          }
+
+          file.contents = new Buffer(results);
+          callback(null, file);
+        });
+      } catch (error) {
+        return cb(new gutil.PluginError(PLUGIN_NAME, error));
+      }
     }
 
-    this.push(file);
-
-    return cb();
-  })
-  return stream;
-}
+  });
+};
 
 module.exports = gulpCSSPurge;
-
-
