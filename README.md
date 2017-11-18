@@ -13,7 +13,7 @@ Purges duplicate CSS rules and more. Based on [css-purge](https://www.npmjs.org/
 This is a simple [gulp](https://github.com/gulpjs/gulp) plugin, which means it's a thin wrapper around `css-purge`. If you are having CSS issues, please contact [css-purge](https://github.com/rbtech/css-purge/issues). Please only create a new issue if it looks like you're having a problem with the gulp plugin.
 
 
-##Install
+## Install
 ```
 npm install gulp-css-purge --save-dev
 ```
